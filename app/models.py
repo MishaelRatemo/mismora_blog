@@ -56,7 +56,7 @@ class Comments(db.Model):
     __tablename__= 'comments'
     id = db.Column(db.Integer, primary_key=True)
     comment_descrip = db.Column(db.Text)
-    time_posted = db.Column(db.Datetime,index=True, default=datetime.utcnow)
+    time_posted = db.Column(db.DateTime,index=True, default=datetime.utcnow)
     post_id = db.Column(db.Integer, db.ForeignKey('posts.id'))
     author_id =db.Column( db.Integer, db.ForeignKey('users.id'))
     
@@ -94,8 +94,9 @@ class Likes(db.Model):
         return f'{self.author_id}: {self.post_like_id}'
         
     
+
 class Unlikes(db.Model):
-    __tablename__= 'likes'
+    __tablename__= 'unlikes'
     id =db.Column (db.Integer, primary_key=True)
     unlike =db.Column(db.Integer, default=1)
     post_unlike_id =db.Column(db.Integer, db.ForeignKey('posts.id'))
@@ -107,13 +108,13 @@ class Unlikes(db.Model):
         
     @classmethod
     def add_unlike(cls,id):
-        like = Unlikes( user = current_user, post_unlike_id=id)
-        like.save_like()
+        unlike = Unlikes( user = current_user, post_unlike_id=id)
+        unlike.save_unlike()
     
     @classmethod
     def get_unlikes(cls):
-        likes = Unlikes.query.filter_by('id').all()
-        return likes
+        unlikes = Unlikes.query.filter_by('id').all()
+        return unlikes
 
     @classmethod
     def check_user_unliked(cls,user_id,post_unlike_id): 
