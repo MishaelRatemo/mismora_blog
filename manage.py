@@ -7,8 +7,12 @@ from flask_migrate import Migrate,MigrateCommand
 app = create_app('development_mode')
 # app = create_app('development_mode')
 
-manager = Manager()
+manager = Manager(app)
 manager.add_command('server', Server)
+
+# initialize migrate class that has been imported
+migrate = Migrate(app,db)
+manager.add_command('db',MigrateCommand)
 
 @manager.shell
 def make_shell_context():
@@ -23,4 +27,5 @@ def make_shell_context():
                 )
 
 if __name__ == '__main__':
+    # app.run()
     manager.run()
