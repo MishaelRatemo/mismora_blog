@@ -1,0 +1,24 @@
+{% import 'bootstrap/wtf.html' as wtf %}
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card text-center mb-1">
+    
+    {{wtf.quick_form(form)}}
+ </div>
+    <ul>
+    {% for post in postlist %}
+        <div class="card-body">
+        <h5 class="card-title">{{post.post}}</h5>
+        <p class="card-text">{{ post.description }}</p>
+        <h6> Posted by {{user.username}}.</h6>
+    
+        </div>
+        <div class="card-footer text-muted" style="background-color: #12355b;">
+        2 days ago
+        </div>
+    {% endfor %}
+    </ul>
+
+
+{% endblock %}
