@@ -2,6 +2,12 @@ from . import db
 from flask_login import UserMixin, current_user
 from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
+from . import login_manager
+
+
+@login_manager.user_loader
+def load_user(user_id):
+    return Users.query.get(int(user_id))
 
 class Users( UserMixin,db.Model):
     __tablename__ = 'users'
@@ -11,10 +17,10 @@ class Users( UserMixin,db.Model):
     login_password = db.Column(db.String(255))
     profile_img_path = db.Column(db.String())
     joined_on = db.Column(db.DateTime(), default=datetime.utcnow)
-    user_posts = db.relationship('Post', backref='author', lazy='dynamic')
-    user_comments =db.relationship('Comment', backref='author', lazy='dynamic')
-    user_like =db.relationship('Like', backref='author', lazy='dynamic')
-    user_unlike =db.relationship('Unlike', backref='author', lazy='dynamic')
+    user_posts = db.relationship('Posts', backref='author', lazy='dynamic')
+    user_comments =db.relationship('Comments', backref='author', lazy='dynamic')
+    user_like =db.relationship('Likes', backref='author', lazy='dynamic')
+    user_unlike =db.relationship('Unlikes', backref='author', lazy='dynamic')
     
     
     @property
@@ -23,10 +29,10 @@ class Users( UserMixin,db.Model):
     
     @password.setter
     def password(self, password):
-        self.password_hash = generate_password_hash(password)# hash password
+        self.login_password = generate_password_hash(password)# hash password
 
     def verify_password(self, password):
-        return check_password_hash(self.password_hash, password) # check if user passwords march
+        return check_password_hash(self.login_password, password) # check if user passwords march
     
     def __repr__(self):
         return f'{self.username}'   
@@ -36,12 +42,12 @@ class Posts(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     post_title = db.Column(db.String)
     post_description =db.Column(db.Text, index = True)
-    post_comments = db.relationship('Comment', backref='post', lazy='dynamic')
+    post_comments = db.relationship('Comments', backref='post', lazy='dynamic')
     auther_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     
     @classmethod
     def get_posts(cls, id):
-        posts = Posts.query.order_by(pitch_id=id).desc().all()
+        posts = Posts.query.order_by(id=id).desc().all()
         return posts
     
     @classmethod    
