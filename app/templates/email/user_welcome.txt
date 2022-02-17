@@ -1,0 +1,9 @@
+Hello {{user.username}}
+
+Welcome to Mismora blog. We’re thrilled to see you here!
+
+We’re confident that this blog will help you comment, like and  dislike Posts.
+
+
+Sincerely,
+Mismora Team
