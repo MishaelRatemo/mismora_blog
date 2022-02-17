@@ -12,11 +12,44 @@
 
 <!--  -->
 {% block content %}
+<header class="container">
+    <main class="">
+        <img src="{{url_for('static',filename='images/blg.png')}}" alt="image" class="w-100 h-100 img-fluid">
+    </main>
+    <div id="overlay" class="h-100 d-flex flex-column justify-content-center align-items-center">
+        {% if quotes %}
+        <h2 class=" fw-bold text-center text-light title ">{{ quotes.quote}}</h2>
+        <p class="text-white">~Author {{quotes.author}} </p>
+        {% else %}
+        <h3 class="display-1 fw-bold text-center text-primary title ">No Qoutes today</h3>new
 
- <main class=" container border-end border-start main " >
-    <h1>{{ title}}</h1>
+        {% endif%}
+        <button href="#blogs" class="btn btn-outline-warning display-4 fs-24  fw-bold"> <a href="/post/new"> Blog</a></button>
+    </div>
+</header>
 
- </main>
+
+    <main id="blogs" class=" container border-end border-start main " >
+        {%  if posts  %}
+        {% for post in posts %}
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">{{post.post_title}}</h5>
+                <p class="card-text">{{post.post_description}} </p>
+                <p class="card-text"><small class="text-muted">Posted by {{post.author.username}}</small></p>
+                
+                </div>
+        </div>
+            
+              
+            {% endfor %}   
+
+
+        {% else %}
+
+            <h4>No posts yet!! </h4>
+        {% endif %}
+    </main>
 
  
 

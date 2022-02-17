@@ -1,0 +1,18 @@
+{% extends 'base.html'%}
+
+
+{% block content %} 
+<main class="container">
+    <section id="contact-me">
+        <h2>Get in touch with me</h2>
+        <form>
+            <input class="form-control" type="text" placeholder="Enter Your Full Name" required>
+            <input class="form-control" type="email" placeholder="Enter Your Email Address" required>
+            <input class="form-control" type="tel" placeholder="Enter Your Phone Number">
+            <textarea class=" form-control" name="" id="" cols="40" rows="5" placeholder=" Your message goes here"
+                required></textarea>
+            <button class="btn btn-outline-success">Send</button>
+        </form>
+    </section>
+</main>
+{% endblock %}

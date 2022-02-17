@@ -2,10 +2,19 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="card text-center mb-1">
-    
-    {{wtf.quick_form(form)}}
- </div>
+ <main class=" border-start border-end border-5 formls m-auto shadow p-3 mb-5 bg-body rounded ">
+    <div class=" text-center p-4 mt-2" style="border-radius: 40px 40px 0  0; background-color: #031c53;">
+        <h3 class="text-light">New  post</h3>
+    </div>
+    <div class="card text-center mb-1">    
+        {{wtf.quick_form(form)}}
+    </div>
+    <div class="text-center p-4 mb-2" style="border-radius:0 0 40px 40px; background-color: #031c53;">
+        <h5 class="text-light"> 
+            <p> &copy; Mismoras  Blogs</p>
+        </h5>
+    </div> 
+ </main>
     <ul>
     {% for post in postlist %}
         <div class="card-body">

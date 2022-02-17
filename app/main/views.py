@@ -1,4 +1,5 @@
 
+import re
 from .. import db
 from  flask import render_template,redirect,request,abort,url_for,flash
 from ..models import Users,Comments,Posts,Likes,Unlikes
@@ -6,6 +7,7 @@ from .forms import UpdateProfile,PostsForm
 from flask_login import  login_required, current_user
 from . import root
 from werkzeug.security import generate_password_hash,check_password_hash
+import requests ,json
 
 
 
@@ -13,9 +15,10 @@ from werkzeug.security import generate_password_hash,check_password_hash
 def index():
     title= 'Home Page'
     posts = Posts.query.order_by(Posts.id.desc()).all()
+    api_url ='http://quotes.stormconsultancy.co.uk/random.json'
+    quotes = requests.get(api_url).json()
     
-    
-    return render_template('index.html', title=title, posts=posts)
+    return render_template('index.html', title=title, posts=posts, quotes=quotes)
 
 
 @root.route('/user/<uname>')
@@ -62,4 +65,9 @@ def new_post():
         return redirect(url_for('root.index'))
     return render_template('posts.html', form= post_form)
         
-        
+
+
+@root.route('/contact')
+def contact():
+    
+    return render_template('contact.html')    

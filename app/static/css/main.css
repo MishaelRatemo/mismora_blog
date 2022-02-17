@@ -2,6 +2,30 @@
 body{
     height: 100%;
 }
+
+header{
+    position: relative;
+    height: 60vh;
+}
+header main img{
+    height: 40vh
+}
+
+#overlay{
+    /* display: ; */
+    align-items: center;
+    position: absolute;
+    top: 0;
+    background-color: rgba(0,0,0,0.5);
+    width: 100%;
+}
+
+#overlay .btn a{
+    text-decoration: none;
+    color: white;
+}
+
+
 .formls{
     width: 40%;
 }
@@ -14,6 +38,62 @@ body{
     background-color:rgb(223, 87, 87);
     color:white;
 }
+
+.profile{
+    width: 50px;
+    height: 50px;
+ }
+
+ /* Contact me section */
+ #contact-me{
+    margin-bottom: 4%;
+}
+
+ #contact-me {
+    border-top: 8px solid #031c53;
+    margin: auto;
+}
+
+#contact-me h2{
+    text-align: center;
+    color: #031c53;
+}
+#contact-me form{
+    width: 60%;
+    margin: auto;
+    display: block;
+}
+#contact-me form input,#contact-me form textarea{
+    border-left: 5px solid #031c53;
+    border-bottom: 5px solid #031c53;
+    border-right: 5px solid #031c53;
+    outline: none;
+    margin-bottom: 2%;
+    padding: 2%;
+    color: #b3446c;
+}
+#contact-me form textarea:focus, #contact-me form input:focus{
+    box-shadow:8px 8px 8px #031c53;
+}
+#contact-me form button{
+    width: 40%;
+    color:#031c53;
+    position: relative;
+    left: 25%;
+    border: none;
+    padding: 3%;
+    margin: auto;
+    cursor: pointer;
+    outline: #031c53 solid 3px;
+    transition: .6s ease-in-out;
+}
+#contact-me form button:hover{
+    background-color: #031c53;
+    color: #fff;
+}
+
+
+
 @media (max-width: 478px)  {
     .formls{
         width: 95%;
