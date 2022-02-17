@@ -1,0 +1,33 @@
+{% extends 'base.html'%}
+
+{% block content %}
+<div class="container">
+<div class="row">
+<!-- displaying  Username-->
+  <div class="col-md-4">
+    <h3> {{user.username }} </h3>
+
+    {% if user.bio %}
+      <p> {{user.bio}}</p>
+    {%else%}
+      <p> You ({{user.username}} ) have no bio </p>
+    {% endif %}
+
+    {% if user == current_user %}
+    <a href="{{url_for('root.update_profile',uname=user.username)}}">Edit profile</a>
+    {% endif %}
+    
+  </div>
+
+  <!--Display profile photo-->
+  <div class="col-md-4">
+
+    {% if user.profile_pic_path %}
+        <img src="{{url_for('static',filename=user.profile_pic_path)}}" alt="" class="img-thumbnail">
+    {%else%}
+        <img src="{{url_for('static',filename='images/avatar.png')}}" width="'100" alt="" class="profile img-fluid rounded-circle">
+    {% endif %}
+  </div>
+</div>
+</div>
+{% endblock %}
