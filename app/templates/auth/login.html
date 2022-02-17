@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+<!--  -->
+{% block title %}
+    Blog|Login
+{% endblock%}
+
+{% block content %}
+ <main class=" border-start border-end border-5 formls m-auto shadow p-3 mb-5 bg-body rounded ">
+    <div class=" text-center p-4 mt-2" style="border-radius: 40px 40px 0  0; background-color: #031c53;">
+        <h3 class="text-light">Login</h3>
+    </div>
+    <div class="border-5 border-danger" >
+        <!--Flash message -->
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{ message }}
+    </div>
+    {% endfor %}
+    <!-- Login form -->
+        {{ wtf.quick_form(loginForm) }}
+    </div>
+    <div class="text-center p-4 mb-2" style="border-radius:0 0 40px 40px; background-color: #031c53;">
+        <h5 class="text-light"> 
+      <p> Don't have an account? <a href="{{url_for('auth.register')}}"> Sign up </a></p>
+        </h5>
+    </div>    
+ </main>
+
+{% endblock %}
