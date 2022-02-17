@@ -1,0 +1,41 @@
+
+body{
+    height: 100%;
+}
+.formls{
+    width: 40%;
+}
+.main{
+    height: auto;
+    min-height: 70%;
+}
+
+.help-block{
+    background-color:rgb(223, 87, 87);
+    color:white;
+}
+@media (max-width: 478px)  {
+    .formls{
+        width: 95%;
+    }
+    
+}
+@media (max-width: 578px)  {
+    .formls{
+        width: 80%;
+    }
+    
+}
+@media (max-width: 678px)  {
+    .formls{
+        width: 70%;
+    }
+
+}
+@media (max-width: 768px)  {
+    .formls{
+        width: 65%;
+    }
+    
+    
+}
