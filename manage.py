@@ -4,7 +4,7 @@ from app import db
 from app.models import Users,Posts,Comments, Likes,Unlikes
 from flask_migrate import Migrate,MigrateCommand
 # app instances
-app = create_app('development_mode')
+app = create_app('development')
 # app = create_app('development_mode')
 
 manager = Manager(app)
@@ -27,5 +27,5 @@ def make_shell_context():
                 )
 
 if __name__ == '__main__':
-    # app.run()
-    manager.run()
+    app.run()
+    # manager.run()
